@@ -18,9 +18,17 @@ def find_key(hex_str):
                 print "Potential key: " + str(chr(k))
                 return k
 
+    return False
+
 def decrypt(hex_str, key):
     return "".join(chr(int(hex_str[x:x+2], 16) ^ key) for x in range(0, len(hex_str), 2))
 
-hexed = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
-valid_key = find_key(hexed)
-print "Using key '" + str(chr(valid_key)) + "', message: " + decrypt(hexed, valid_key)
+with open('4.txt', 'r') as string_file:
+    hex_strings = string_file.read()
+    str_array = hex_strings.splitlines()
+
+    for hex_string in str_array:
+        valid_key = find_key(hex_string)
+        if valid_key > 0:
+            print "Single-byte XOR Detected in: " + hex_string
+            print "Deciphered: " + decrypt(hex_string, valid_key)
