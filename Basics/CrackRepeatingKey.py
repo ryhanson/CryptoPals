@@ -32,6 +32,20 @@ def average_distance(chunks, count):
 
     return float(total) / count
 
+def transpose_chunks(chunks, chunk_size):
+    trans_chunks = []
+
+    for i in range(0, chunk_size, 1):
+        trans_chunk = ""
+
+        for chunk in chunks:
+            if len(chunk) == chunk_size:
+                trans_chunk += chunk[i]
+
+        trans_chunks.append(trans_chunk)
+
+    return trans_chunks
+
 
 test_str1 = "this is a test"
 test_str2 = "wokka wokka!!!"
@@ -107,10 +121,14 @@ with open('6.txt', 'r') as encrypted_file:
     print "[+] Smallest avg distance keysize " + str(best_avg_keysize) + " with distance of: " + str(smallest_avg_distance)
     print "[+] Best possible keysizes are: " + str(best_keysize) + " and " + str(best_avg_keysize)
 
-    # TODO:
-    # Try taking 4 keysize blocks and averaging the distances between them
-    # Bytes are already chunked, now transpose them by:
-    # make a block that is the first byte of every block, and a block that is the second byte of every block, and so on.
-    # Getting closer....
+    print "[-] Transposing " + str(best_keysize) + " keysize chunk set..."
+    best_chunk_set = binary_chunks[best_keysize - 2]
+    best_trans_set = transpose_chunks(best_chunk_set, best_keysize)
+    print "[+] Chunks transposed!"
+
+    print "[-] Transposing " + str(best_avg_keysize) + " keysize chunk set..."
+    best_avg_chunk_set = binary_chunks[best_avg_keysize - 2]
+    best_avg_trans_set = transpose_chunks(best_avg_chunk_set, best_avg_keysize)
+    print "[+] Chunks transposed!"
 
 
