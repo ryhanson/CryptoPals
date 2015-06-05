@@ -169,4 +169,6 @@ with open('6.txt', 'r') as encrypted_file:
     #       So after calculating distance go back to use base64 decoded ciphered text
     #       Or maybe we work convert each chunk back to chr() and decrypt that way?
     #       Hmmmmmmm........
+    #
+    #       This was a failed attempt that ended up in a complete rewrite in Python 3... See other solution.
 
