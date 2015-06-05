@@ -1,6 +1,5 @@
 import base64
 import collections
-from XORLord import XORLord
 
 def hamming_dist(a, b):
     xored = bytes([x ^ y for (x, y) in zip(a, b)])
