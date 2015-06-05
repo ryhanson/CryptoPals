@@ -30,7 +30,8 @@ class XORLord:
         for x in range(0, len(self.encrypted), len(key)):
             chunk = self.encrypted[x:x+len(key)]
             for y, z in zip(chunk, key):
-                decrypted += (chr(ord(y) ^ ord(z)))
+                print(str(y) + " ^ " + str(z))
+                decrypted += (chr(ord(y) ^ ord(chr(z))))
 
         self.plain = decrypted
 
